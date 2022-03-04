@@ -2,7 +2,6 @@
 #include "ui_mainwindow.h"
 #include "handicape.h"
 #include <QMessageBox>
-#include "secdialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -10,7 +9,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    ui->table_handicape->setModel(h.afficher());
+   ui->table_handicape->setModel(h.afficher());
+
+
 
 }
 
@@ -30,7 +31,7 @@ void MainWindow::on_pb_ajouter_clicked()
     handicape h(id,nom,prenom,age,tel);
 bool test =h.ajouter();
 if(test)
-{
+{  ui->table_handicape->setModel(h.afficher());
     QMessageBox::information(nullptr,QObject::tr("ok"),QObject::tr("Ajouter effectue\n" "click cancel to exit."),QMessageBox::Cancel);
 }
 else
@@ -45,7 +46,7 @@ else
 
 void MainWindow::on_pb_supprimer_clicked()
 {
-    int id=ui->id_modi_supp->text().toInt();
+    int id=ui->txt_id->text().toInt();
     bool test=h.supprimer(id);
     if(test)
     { ui->table_handicape->setModel(h.afficher());
@@ -63,28 +64,52 @@ void MainWindow::on_pb_supprimer_clicked()
 
 
 
-
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_table_handicape_activated(const QModelIndex &index)
 {
-    secdialog secdialog;
-    secdialog.setModal(true);
-    secdialog.exec();
+    QString val=ui->table_handicape->model()->data(index).toString();
+QSqlQuery qry ;
+qry.prepare("select * from handicape where id='"+ val+"'");
+
+if(qry.exec())
+{
+    while(qry.next())
+    {
+        ui->txt_id->setText(qry.value(0).toString());
+        ui->txt_nom->setText(qry.value(1).toString());
+        ui->txt_prenom->setText(qry.value(2).toString());
+        ui->txt_age->setText(qry.value(3).toString());
+         ui->txt_tel->setText(qry.value(4).toString());
+    }
+}
+else {
+    QMessageBox::critical(nullptr,QObject::tr("Not ok"),QObject::tr("ERROR" "click cancel to exit."),QMessageBox::Cancel);
+}
+
 }
 
 
-void MainWindow::on_pb_update_clicked()
+
+
+
+
+
+
+void MainWindow::on_pb_modifier_2_clicked()
 {
-    int id=ui->i->text().toUInt();
-    int age=ui->a->text().toUInt();
-    int tel=ui->t->text().toUInt();
-    QString nom=ui->n->text();
-    QString prenom=ui->p->text();
+    int id=ui->txt_id->text().toUInt();
+    int age=ui->txt_age->text().toUInt();
+    int tel=ui->txt_tel->text().toUInt();
+    QString nom=ui->txt_nom->text();
+    QString prenom=ui->txt_prenom->text();
 
     handicape h(id,nom,prenom,age,tel);
-bool test= h.modifier();
+
+bool test= h.modifier(id);
 if(test)
 {
-    QMessageBox::information(nullptr,QObject::tr("ok"),QObject::tr("Modification effectue\n" "click cancel to exit."),QMessageBox::Cancel);
+    QMessageBox::critical(nullptr,QObject::tr("ok"),QObject::tr("Modification  effectue\n" "click cancel to exit."),QMessageBox::Cancel);
+
+    ui->table_handicape->setModel(h.afficher());
 }
 else
   {

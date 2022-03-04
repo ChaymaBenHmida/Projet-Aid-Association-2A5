@@ -41,15 +41,13 @@ bool handicape::ajouter()
 
 
 
-bool handicape::modifier()
+bool handicape::modifier(int id)
 {
     QSqlQuery query;
-    QString res = QString::number(id);
 
-   query.prepare("UPDATE handicape set nom='"+nom+"',prenom='"+prenom+"',age='"+age+"',tel='"+tel+"' where id='"+id+"'");
+   query.prepare("UPDATE handicape SET nom=:nom ,prenom=:prenom, age=:age, tel=:tel WHERE id=:id");
 
-
-    query.bindValue(":id",res);
+    query.bindValue(":id",id);
     query.bindValue(":nom",nom);
     query.bindValue(":prenom",prenom);
 
@@ -71,6 +69,7 @@ bool handicape::supprimer(int id)
 
     return query.exec();
 }
+
 
 
 QSqlQueryModel * handicape::afficher()

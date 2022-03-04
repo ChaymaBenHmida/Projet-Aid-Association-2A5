@@ -2,7 +2,7 @@
 #include <QApplication>
 #include <QMessageBox>
 #include "connection.h"
-#include "secdialog.h"
+
 
 int main(int argc, char *argv[])
 {

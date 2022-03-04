@@ -21,18 +21,15 @@ SOURCES += \
     connection.cpp \
     handicape.cpp \
     main.cpp \
-    mainwindow.cpp \
-    secdialog.cpp
+    mainwindow.cpp
 
 HEADERS += \
     connection.h \
     handicape.h \
-    mainwindow.h \
-    secdialog.h
+    mainwindow.h
 
 FORMS += \
-    mainwindow.ui \
-    secdialog.ui
+    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -29,7 +29,7 @@ public:
 
     //Method
     bool ajouter();
-    bool modifier();
+    bool modifier(int);
     QSqlQueryModel * afficher();
     bool supprimer(int);
 };
