@@ -2,15 +2,31 @@
 #include "ui_mainwindow.h"
 #include "handicape.h"
 #include <QMessageBox>
+#include <QIntValidator>
+#include <QRegExpValidator>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
      ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+ui->table_handicape->setModel(h.afficher());
+ui->id->setValidator(new QIntValidator(0,9999,this));
+ui->age->setValidator(new QIntValidator(0,18,this));
+ui->tel->setValidator(new QIntValidator(0,99999999,this));
 
-   ui->table_handicape->setModel(h.afficher());
 
+QRegExp rx("^[A-Z][a-z]{0,10}$");
+ui->nom->setValidator(new QRegExpValidator(rx, this));
+ui->prenom->setValidator(new QRegExpValidator(rx, this));
+ui->txt_nom->setValidator(new QRegExpValidator(rx, this));
+ui->txt_prenom->setValidator(new QRegExpValidator(rx, this));
+
+
+ui->txt_id->setValidator(new QIntValidator(0,9999,this));
+ui->txt_age->setValidator(new QIntValidator(0,18,this));
+ui->txt_tel->setValidator(new QIntValidator(0,99999999,this));
 
 
 }
