@@ -21,7 +21,8 @@ SOURCES += \
     connection.cpp \
     handicape.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    rechercher.cpp
 
 HEADERS += \
     connection.h \

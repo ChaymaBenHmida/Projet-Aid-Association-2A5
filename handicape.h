@@ -32,6 +32,12 @@ public:
     bool modifier(int);
     QSqlQueryModel * afficher();
     bool supprimer(int);
+
+    //rechercher
+   QSqlQueryModel *  recherche_age(QString nom);
+   QSqlQueryModel * recherche_nom(QString nom);
+   QSqlQueryModel * recherche_prenom(QString nom);
+
 };
 
 #endif // HANDICAPE_H

@@ -29,6 +29,12 @@ ui->txt_age->setValidator(new QIntValidator(0,18,this));
 ui->txt_tel->setValidator(new QIntValidator(0,99999999,this));
 
 
+//clear button
+ui->txt_nom->setClearButtonEnabled(true);
+ui->txt_prenom->setClearButtonEnabled(true);
+ui->txt_age->setClearButtonEnabled(true);
+ui->txt_tel->setClearButtonEnabled(true);
+
 }
 
 MainWindow::~MainWindow()
@@ -49,6 +55,7 @@ bool test =h.ajouter();
 if(test)
 {  ui->table_handicape->setModel(h.afficher());
     QMessageBox::information(nullptr,QObject::tr("ok"),QObject::tr("Ajouter effectue\n" "click cancel to exit."),QMessageBox::Cancel);
+
 }
 else
   {
@@ -132,4 +139,86 @@ else
     QMessageBox::critical(nullptr,QObject::tr("Not ok"),QObject::tr("Modification non effectue\n" "click cancel to exit."),QMessageBox::Cancel);
 
 }
+}
+
+void MainWindow::on_pb_clear_clicked()
+{
+    ui->id->clear();
+    ui->nom->clear();
+    ui->prenom->clear();
+    ui->age->clear();
+    ui->tel->clear();
+}
+
+// recherche //
+
+void MainWindow::on_pushButton_clicked()
+{
+    QString nom = ui->input_recherche->text();
+    if(nom=="")
+    {
+        ui->table_rech->setModel(h.afficher());
+    }
+    else
+    {
+        if( ui->rech_age->isChecked())
+        {
+            ui->table_rech->setModel(h.recherche_age(nom));
+        }
+        if( ui->rech_nom->isChecked())
+        {
+            ui->table_rech->setModel(h.recherche_nom(nom));
+        }
+        if( ui->rech_prenom->isChecked())
+        {
+            ui->table_rech->setModel(h.recherche_prenom(nom));
+        }
+    }
+
+}
+
+void MainWindow::on_rech_prenom_stateChanged(int arg1)
+{
+    if(ui->rech_prenom->isChecked())
+    {
+    ui->rech_age->setDisabled(true);
+    ui->rech_nom->setDisabled(true);
+    }
+    else
+    {
+        ui->rech_age->setDisabled(false);
+        ui->rech_nom->setDisabled(false);
+
+    }
+}
+
+
+void MainWindow::on_rech_nom_stateChanged(int arg1)
+{
+    if(ui->rech_nom->isChecked())
+    {
+    ui->rech_age->setDisabled(true);
+    ui->rech_prenom->setDisabled(true);
+    }
+    else
+    {
+        ui->rech_age->setDisabled(false);
+        ui->rech_prenom->setDisabled(false);
+
+    }
+}
+
+void MainWindow::on_rech_age_stateChanged(int arg1)
+{
+    if(ui->rech_age->isChecked())
+    {
+    ui->rech_nom->setDisabled(true);
+    ui->rech_prenom->setDisabled(true);
+    }
+    else
+    {
+        ui->rech_nom->setDisabled(false);
+        ui->rech_prenom->setDisabled(false);
+
+    }
 }
