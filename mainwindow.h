@@ -1,6 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include "employes.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -18,7 +18,16 @@ public:
 private slots:
     void on_pb_ajouter_clicked();
 
+    void on_modifier_clicked();
+
+    void on_table_E_activated(const QModelIndex &index);
+
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    Employe E;
+    int me;
 };
+
 #endif // MAINWINDOW_H
