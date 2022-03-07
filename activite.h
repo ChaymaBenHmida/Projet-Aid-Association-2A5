@@ -7,9 +7,9 @@ class Activite
 {
 public:
 //constructeurs
-    Activite(){}
-    ~Activite(){}
-    Activite(int,QString,QString);
+    Activite(){} //constructeur par defaut
+    ~Activite(){} //destructeur
+    Activite(int,QString,QString);//constructeur parametré
 //getters
         int getidA();
         QString getnomA();

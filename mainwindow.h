@@ -13,7 +13,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(QWidget *parent = nullptr);//bch ki tfaskh haja tetfaksh heya wl parent mteeha
     ~MainWindow();
 
 private slots:
@@ -28,8 +28,10 @@ private slots:
 
     void on_recherche_clicked();
 
+    void on_tab_act_activated(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
-    Activite A;
+    Activite A; //constance de type activite
 };
 #endif // MAINWINDOW_H

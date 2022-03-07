@@ -36,7 +36,6 @@ void Activite::setdateA(QString dateA){
     this->dateA=dateA;
 }
 
-
 bool Activite::ajouter(){
   QSqlQuery query;
   QString id_string= QString::number(idA);
@@ -60,10 +59,12 @@ QSqlQueryModel* Activite::afficher(){
 
  QSqlQueryModel* model =new QSqlQueryModel();
  model->setQuery("SELECT* FROM ACTIVITE");
+
  model->setHeaderData(0, Qt::Horizontal,QObject::tr("Id de l'activité"));
  model->setHeaderData(1, Qt::Horizontal,QObject::tr("Nom de l'activité"));
  model->setHeaderData(2, Qt::Horizontal,QObject::tr("Date de l'activité"));
  return model;
+
 }
 bool Activite::modifier()
 {

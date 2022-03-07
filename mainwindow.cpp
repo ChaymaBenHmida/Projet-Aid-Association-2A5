@@ -6,13 +6,15 @@
 #include<QSqlQueryModel>
 #include<QTableView>
 #include <QRegExpValidator>
+#include<QSqlQuery>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->tab_act->setModel(A.afficher());
+    ui->tab_act->setModel(A.afficher()); //affichage
+
 //controle de saisie sur le champ id
 ui->le_id->setValidator(new QIntValidator(100, 99999999, this));
 ui->le_modifid->setValidator(new QIntValidator(100, 99999999, this));
@@ -37,6 +39,7 @@ void MainWindow::on_pb_ajout_clicked()
     QString nomA=ui->le_nom->text();
     QString dateA=ui->le_date->text();
      Activite A(idA,nomA,dateA);
+
      bool test=A.ajouter();
      QMessageBox msgbox;
      if(test)
@@ -81,7 +84,6 @@ void MainWindow::on_on_pb_modifier_clicked_clicked()
 void MainWindow::on_pb_affichierExecuter_clicked()
 {
     ui->tab_act->setModel(A.afficher());
-
 }
 
 
@@ -89,4 +91,21 @@ void MainWindow::on_recherche_clicked()
 {
         QString nomA=ui->le_recherche->text();
         ui->tab_act->setModel(A.recherche(nomA)) ;
+}
+
+void MainWindow::on_tab_act_activated(const QModelIndex &index)
+{
+    QString val=ui->tab_act->model()->data(index).toString();
+        QSqlQuery qry;
+        qry.prepare("select * from ACTIVITE where idA='"+val+"' or nomA='"+val+"' or dateA='"+val+"' " );
+        if(qry.exec())
+        {
+        while(qry.next())
+        {
+            ui->le_modifid->setText((qry.value(0).toString()));
+            ui->le_modifnom->setText(qry.value(1).toString());
+            ui->le_modifid_2->setText(qry.value(2).toString());
+
+         }
+        }
 }
