@@ -5,7 +5,7 @@
 #include <QMessageBox>
 #include<QSqlQueryModel>
 #include<QTableView>
-
+#include <QRegExpValidator>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,8 +19,10 @@ ui->le_modifid->setValidator(new QIntValidator(100, 99999999, this));
 ui->le_sup->setValidator(new QIntValidator(100, 99999999, this));
 
 //controle de saisie sur le champ nom
-
-//controle de saisie sur le champ date
+        QRegExp rxnom("\\b[a-zA-Z0-9]{2,10}\\b");
+        QRegExpValidator *valinom =new QRegExpValidator(rxnom,this);
+        ui->le_nom->setValidator(valinom);
+        ui->le_modifnom->setValidator(valinom);
 }
 
 MainWindow::~MainWindow()
