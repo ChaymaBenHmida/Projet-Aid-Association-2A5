@@ -3,6 +3,7 @@
 #include <QString>
 #include<QSqlQuery>
 #include<QSqlQueryModel>
+//
 class Employe
 {
 public:
