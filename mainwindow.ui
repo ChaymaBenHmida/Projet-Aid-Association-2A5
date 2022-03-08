@@ -23,8 +23,13 @@
       <height>561</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(85, 173, 255);
+background-color: rgb(220, 243, 255);
+</string>
+    </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Ajouter">
      <attribute name="title">
@@ -137,10 +142,23 @@
        <property name="geometry">
         <rect>
          <x>80</x>
-         <y>60</y>
+         <y>56</y>
          <width>81</width>
-         <height>16</height>
+         <height>20</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	
+padding: 1px;
+border-style: solid;
+border: 2px solid gray;
+border-radius: 8px;
+background-color : rgb(254,254,226);
+}</string>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
       <widget class="QLineEdit" name="le_tel">
@@ -152,6 +170,16 @@
          <height>21</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	
+padding: 1px;
+border-style: solid;
+border: 2px solid gray;
+border-radius: 8px;
+background-color : rgb(254,254,226);
+}</string>
+       </property>
       </widget>
       <widget class="QLineEdit" name="le_nom">
        <property name="geometry">
@@ -161,6 +189,16 @@
          <width>91</width>
          <height>21</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	
+padding: 1px;
+border-style: solid;
+border: 2px solid gray;
+border-radius: 8px;
+background-color : rgb(254,254,226);
+}</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="le_prenom">
@@ -172,6 +210,16 @@
          <height>22</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	
+padding: 1px;
+border-style: solid;
+border: 2px solid gray;
+border-radius: 8px;
+background-color : rgb(254,254,226);
+}</string>
+       </property>
       </widget>
       <widget class="QLineEdit" name="le_fonct">
        <property name="geometry">
@@ -181,6 +229,16 @@
          <width>101</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	
+padding: 1px;
+border-style: solid;
+border: 2px solid gray;
+border-radius: 8px;
+background-color : rgb(254,254,226);
+}</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="les_jours">
@@ -192,6 +250,16 @@
          <height>21</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	
+padding: 1px;
+border-style: solid;
+border: 2px solid gray;
+border-radius: 8px;
+background-color : rgb(254,254,226);
+}</string>
+       </property>
       </widget>
       <widget class="QLineEdit" name="le_salaire">
        <property name="geometry">
@@ -202,15 +270,44 @@
          <height>16</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	
+padding: 1px;
+border-style: solid;
+border: 2px solid gray;
+border-radius: 8px;
+background-color : rgb(254,254,226);
+}</string>
+       </property>
       </widget>
       <widget class="QPushButton" name="pb_ajouter">
        <property name="geometry">
         <rect>
          <x>280</x>
          <y>210</y>
-         <width>93</width>
+         <width>181</width>
          <height>28</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	font: 9pt &quot;MS Shell Dlg 2&quot;;
+color: white;
+background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c);
+border-width: 1px;
+border-color: #339;
+border-style: solid;
+border-radius: 7;
+padding: 3px;
+font-size: 15px;
+padding-left: 5px;
+padding-right: 5px;
+min-width: 80px;
+max-width: 130000000px;
+min-height: 20px;
+max-height: 30px;
+}</string>
        </property>
        <property name="text">
         <string>Ajouter</string>
@@ -219,8 +316,8 @@
       <widget class="QLabel" name="label_16">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>-190</y>
+         <x>30</x>
+         <y>-180</y>
          <width>801</width>
          <height>681</height>
         </rect>
@@ -249,6 +346,22 @@
       <zorder>le_salaire</zorder>
       <zorder>pb_ajouter</zorder>
      </widget>
+     <widget class="QLabel" name="label_19">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>300</y>
+        <width>661</width>
+        <height>291</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../../274607209_670391844097957_6948825904262534585_n.png</pixmap>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="Afficher">
      <attribute name="title">
@@ -263,6 +376,10 @@
         <height>291</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(37, 13, 134);
+color: rgb(14, 171, 255);</string>
+      </property>
      </widget>
      <widget class="QPushButton" name="modifier">
       <property name="geometry">
@@ -270,22 +387,35 @@
         <x>400</x>
         <y>430</y>
         <width>151</width>
-        <height>51</height>
+        <height>38</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Montserrat</family>
-        <pointsize>12</pointsize>
+        <family>MS Shell Dlg 2</family>
+        <pointsize>-1</pointsize>
+        <weight>50</weight>
+        <italic>false</italic>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">QPushButton
-{
-  color: black;
-  background-color: #3135;
-  border-width: 0px;
-  border-radius: 10px;
+       <string notr="true">QPushButton {
+	font: 9pt &quot;MS Shell Dlg 2&quot;;
+color: white;
+background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c);
+border-width: 1px;
+border-color: #339;
+border-style: solid;
+border-radius: 7;
+padding: 3px;
+font-size: 15px;
+padding-left: 5px;
+padding-right: 5px;
+min-width: 80px;
+max-width: 130000000px;
+min-height: 20px;
+max-height: 30px;
 }</string>
       </property>
       <property name="text">
@@ -408,6 +538,16 @@
          <height>16</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	
+padding: 1px;
+border-style: solid;
+border: 2px solid gray;
+border-radius: 8px;
+background-color : rgb(254,254,226);
+}</string>
+       </property>
       </widget>
       <widget class="QLineEdit" name="modiftel">
        <property name="geometry">
@@ -417,6 +557,16 @@
          <width>81</width>
          <height>21</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	
+padding: 1px;
+border-style: solid;
+border: 2px solid gray;
+border-radius: 8px;
+background-color : rgb(254,254,226);
+}</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="modifnom">
@@ -428,6 +578,16 @@
          <height>21</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	
+padding: 1px;
+border-style: solid;
+border: 2px solid gray;
+border-radius: 8px;
+background-color : rgb(254,254,226);
+}</string>
+       </property>
       </widget>
       <widget class="QLineEdit" name="modifpr">
        <property name="geometry">
@@ -437,6 +597,16 @@
          <width>113</width>
          <height>22</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	
+padding: 1px;
+border-style: solid;
+border: 2px solid gray;
+border-radius: 8px;
+background-color : rgb(254,254,226);
+}</string>
        </property>
       </widget>
       <widget class="QLineEdit" name="modiff">
@@ -448,6 +618,16 @@
          <height>16</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	
+padding: 1px;
+border-style: solid;
+border: 2px solid gray;
+border-radius: 8px;
+background-color : rgb(254,254,226);
+}</string>
+       </property>
       </widget>
       <widget class="QLineEdit" name="modifj">
        <property name="geometry">
@@ -458,6 +638,16 @@
          <height>21</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	
+padding: 1px;
+border-style: solid;
+border: 2px solid gray;
+border-radius: 8px;
+background-color : rgb(254,254,226);
+}</string>
+       </property>
       </widget>
       <widget class="QLineEdit" name="modifs">
        <property name="geometry">
@@ -467,6 +657,16 @@
          <width>81</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QLineEdit {
+	
+padding: 1px;
+border-style: solid;
+border: 2px solid gray;
+border-radius: 8px;
+background-color : rgb(254,254,226);
+}</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_17">
@@ -532,11 +732,30 @@
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
        <rect>
-        <x>290</x>
+        <x>220</x>
         <y>140</y>
-        <width>93</width>
+        <width>171</width>
         <height>28</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+	font: 9pt &quot;MS Shell Dlg 2&quot;;
+color: white;
+background-color: QLinearGradient( x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #88d, stop: 0.1 #99e, stop: 0.49 #77c, stop: 0.5 #66b, stop: 1 #77c);
+border-width: 1px;
+border-color: #339;
+border-style: solid;
+border-radius: 7;
+padding: 3px;
+font-size: 15px;
+padding-left: 5px;
+padding-right: 5px;
+min-width: 80px;
+max-width: 130000000px;
+min-height: 20px;
+max-height: 30px;
+}</string>
       </property>
       <property name="text">
        <string>supprimer</string>

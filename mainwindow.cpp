@@ -10,7 +10,20 @@
         ui->setupUi(this);
         ui->table_E->setModel(E.afficher());
         ui->le_cin->setValidator(new QIntValidator(0,99999999,this));
+                ui->le_tel->setValidator(new QIntValidator(0,99999999,this));
+                ui->les_jours->setValidator(new QIntValidator(0,7,this));
+                QRegExp rx("^[A-Z][a-z]{0,10}$");
+                ui->le_nom->setValidator(new QRegExpValidator(rx, this));
 
+                ui->le_prenom->setValidator(new QRegExpValidator(rx, this));
+                ui->le_fonct->setValidator(new QRegExpValidator(rx, this));
+         ui->modifnom->setValidator(new QRegExpValidator(rx, this));
+          ui->modifpr->setValidator(new QRegExpValidator(rx, this));
+           ui->modifs->setValidator(new QRegExpValidator(rx, this));
+
+           ui->modifcin->setValidator(new QIntValidator(0,99999999,this));
+           ui->modiftel->setValidator(new QIntValidator(0,99999999,this));
+           ui->modifj->setValidator(new QIntValidator(0,7,this));
     }
 
 
