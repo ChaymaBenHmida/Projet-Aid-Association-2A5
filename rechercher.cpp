@@ -62,3 +62,5 @@ QSqlQueryModel * handicape::recherche_prenom(QString nom)
 
     return model ;
 }
+
+

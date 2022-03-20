@@ -10,17 +10,18 @@ handicape::handicape()
     prenom="";
     age=0;
     tel=0;
+    img="";
 }
 
 
-handicape::handicape(int i,QString n,QString p,int a,int t)
+handicape::handicape(int i,QString n,QString p,int a,int t,QString m)
 {
     this->id=i;
     this->nom=n;
     this->prenom=p;
     this->tel=t;
     this->age=a;
-
+    this->img=m;
 }
 
 
@@ -28,14 +29,14 @@ bool handicape::ajouter()
 {
     QSqlQuery query;
     QString res = QString::number(id);
-    query.prepare("INSERT INTO  handicape(id,nom,prenom,age,tel)""values(:id, :nom, :prenom, :age, :tel)");
+    query.prepare("INSERT INTO  handicape(id,nom,prenom,age,tel,img)""values(:id, :nom, :prenom, :age, :tel, :img)");
 
     query.bindValue(":id",res);
     query.bindValue(":nom",nom);
     query.bindValue(":prenom",prenom);
     query.bindValue(":age",age);
     query.bindValue(":tel",tel);
-
+    query.bindValue(":img",img);
     return query.exec();
 }
 
@@ -45,7 +46,7 @@ bool handicape::modifier(int id)
 {
     QSqlQuery query;
 
-   query.prepare("UPDATE handicape SET nom=:nom ,prenom=:prenom, age=:age, tel=:tel WHERE id=:id");
+   query.prepare("UPDATE handicape SET nom=:nom ,prenom=:prenom, age=:age, tel=:tel, img=:img WHERE id=:id");
 
     query.bindValue(":id",id);
     query.bindValue(":nom",nom);
@@ -53,6 +54,8 @@ bool handicape::modifier(int id)
 
     query.bindValue(":age",age);
     query.bindValue(":tel",tel);
+    query.bindValue(":img",img);
+
 
 
     return query.exec();
@@ -84,5 +87,21 @@ QSqlQueryModel * handicape::afficher()
     model->setHeaderData(3,Qt::Horizontal,QObject::tr("age"));
     model->setHeaderData(4,Qt::Horizontal,QObject::tr("tel"));
 
+
     return  model;
+}
+
+
+QSqlQuery handicape::editview(QString info)
+
+{
+QSqlQuery query;
+//query.prepare("select * from handicape where id='"+info+"'");
+query.prepare("select * from handicape ");
+
+if(query.exec())
+ {
+return query;
+ }
+
 }

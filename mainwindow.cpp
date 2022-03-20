@@ -1,10 +1,15 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "handicape.h"
+#include "excel.h"
 #include <QMessageBox>
 #include <QIntValidator>
 #include <QRegExpValidator>
-
+#include <QPlainTextEdit>
+#include <QPrinter>
+#include <QPrintDialog>
+#include <QSystemTrayIcon>
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -14,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
 ui->table_handicape->setModel(h.afficher());
 ui->id->setValidator(new QIntValidator(0,9999,this));
 ui->age->setValidator(new QIntValidator(0,18,this));
-ui->tel->setValidator(new QIntValidator(0,99999999,this));
+ui->tel->setValidator(new QIntValidator(11111111,99999999,this));
 
 
 QRegExp rx("^[A-Z][a-z]{0,10}$");
@@ -26,7 +31,7 @@ ui->txt_prenom->setValidator(new QRegExpValidator(rx, this));
 
 ui->txt_id->setValidator(new QIntValidator(0,9999,this));
 ui->txt_age->setValidator(new QIntValidator(0,18,this));
-ui->txt_tel->setValidator(new QIntValidator(0,99999999,this));
+ui->txt_tel->setValidator(new QIntValidator(11111111,99999999,this));
 
 
 //clear button
@@ -43,17 +48,22 @@ MainWindow::~MainWindow()
 }
 
 
+
+/*********************************************** ajouter *******************************************************/
+
 void MainWindow::on_pb_ajouter_clicked()
 {   int id=ui->id->text().toUInt();
     int age=ui->age->text().toUInt();
     int tel=ui->tel->text().toUInt();
     QString nom=ui->nom->text();
     QString prenom=ui->prenom->text();
+   QString img=ui->img_name->text();
 
-    handicape h(id,nom,prenom,age,tel);
+    handicape h(id,nom,prenom,age,tel,img);
 bool test =h.ajouter();
 if(test)
 {  ui->table_handicape->setModel(h.afficher());
+    h.notifications_ajouter();
     QMessageBox::information(nullptr,QObject::tr("ok"),QObject::tr("Ajouter effectue\n" "click cancel to exit."),QMessageBox::Cancel);
 
 }
@@ -66,6 +76,7 @@ else
 
 
 
+/*********************************************** supprimer *******************************************************/
 
 void MainWindow::on_pb_supprimer_clicked()
 {
@@ -73,6 +84,7 @@ void MainWindow::on_pb_supprimer_clicked()
     bool test=h.supprimer(id);
     if(test)
     { ui->table_handicape->setModel(h.afficher());
+        h.notifications_supprimer();
         QMessageBox::information(nullptr,QObject::tr("ok"),QObject::tr("suppression effectue\n" "click cancel to exit."),QMessageBox::Cancel);
 
     }
@@ -86,6 +98,7 @@ void MainWindow::on_pb_supprimer_clicked()
 
 
 
+/*********************************************** affichage(modifier...) *******************************************************/
 
 void MainWindow::on_table_handicape_activated(const QModelIndex &index)
 {
@@ -102,6 +115,28 @@ if(qry.exec())
         ui->txt_prenom->setText(qry.value(2).toString());
         ui->txt_age->setText(qry.value(3).toString());
          ui->txt_tel->setText(qry.value(4).toString());
+         ui->txt_loc_img->setText(qry.value(5).toString());
+
+
+         QString filename = ui->txt_loc_img->text();
+
+        if(QString::compare(filename,QString())!=0)
+        {
+            QImage image;
+            bool valid=image.load(filename);
+            if(valid){
+
+                image=image.scaledToWidth(ui->image->width(),Qt::SmoothTransformation);
+                ui->txt_img->setPixmap(QPixmap::fromImage(image));
+
+            }
+            else
+            {
+                QMessageBox::information(this, tr("ERROR"), QString(tr("Not Valid!")));
+            }
+        }
+
+
     }
 }
 else {
@@ -115,6 +150,7 @@ else {
 
 
 
+/*********************************************** modifier *******************************************************/
 
 
 void MainWindow::on_pb_modifier_2_clicked()
@@ -124,12 +160,13 @@ void MainWindow::on_pb_modifier_2_clicked()
     int tel=ui->txt_tel->text().toUInt();
     QString nom=ui->txt_nom->text();
     QString prenom=ui->txt_prenom->text();
+    QString img=ui->txt_loc_img->text();
 
-    handicape h(id,nom,prenom,age,tel);
+    handicape h(id,nom,prenom,age,tel,img);
 
 bool test= h.modifier(id);
 if(test)
-{
+{ h.notifications_modifier();
     QMessageBox::critical(nullptr,QObject::tr("ok"),QObject::tr("Modification  effectue\n" "click cancel to exit."),QMessageBox::Cancel);
 
     ui->table_handicape->setModel(h.afficher());
@@ -150,7 +187,8 @@ void MainWindow::on_pb_clear_clicked()
     ui->tel->clear();
 }
 
-// recherche //
+/*********************************************** rechercher *******************************************************/
+
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -221,4 +259,173 @@ void MainWindow::on_rech_age_stateChanged(int arg1)
         ui->rech_prenom->setDisabled(false);
 
     }
+}
+
+
+/*********************************************** imprimer *******************************************************/
+
+void MainWindow::on_pb_print_clicked()
+{
+  QModelIndex index=ui->table_rech->currentIndex();
+ QString  info = index.data(Qt::DisplayRole).toString();
+ QSqlQuery view;
+ QPlainTextEdit text;
+  handicape h;
+QString id,nom,prenom,age,tel;
+
+        view=h.editview(info);
+        //view.next();
+        while ( view.next()) {
+
+
+id=view.value(0).toString();
+nom=view.value(1).toString();
+prenom=view.value(2).toString();
+age=view.value(3).toString();
+tel=view.value(4).toString();
+
+
+
+        text.appendPlainText("");
+        text.appendPlainText("");
+
+
+        text.appendPlainText("ID: "+id+"");
+
+        text.appendPlainText("nom: "+nom+"");
+
+        text.appendPlainText("prenom: "+prenom+"");
+
+        text.appendPlainText("age: "+age+"");
+
+        text.appendPlainText("tel: "+tel+"");
+
+}
+        QPrinter printer;
+            printer.setPrinterName("Print");
+            QPrintDialog dlg(&printer,this);
+            if (dlg.exec() == QDialog::Rejected)
+            {
+                return;
+            }
+            text.print(&printer);
+
+
+}
+
+
+
+
+void MainWindow::on_pb_imprimer_handicape_clicked()
+{
+     QPlainTextEdit text;
+     QString id,nom,prenom,age,tel;
+     id=ui->txt_id->text();
+     nom=ui->txt_nom->text();
+     prenom=ui->prenom->text();
+     age=ui->txt_age->text();
+     tel=ui->txt_tel->text();
+
+
+
+text.appendPlainText("ID: "+id+"");
+text.appendPlainText("nom: "+nom+"");
+text.appendPlainText("prenom: "+prenom+"");
+text.appendPlainText("age: "+age+"");
+text.appendPlainText("tel: "+tel+"");
+
+QPrinter printer;
+    printer.setPrinterName("Print");
+    QPrintDialog dlg(&printer,this);
+    if (dlg.exec() == QDialog::Rejected)
+    {
+        return;
+    }
+    text.print(&printer);
+
+
+}
+
+
+
+/*********************************************** EXCEL *******************************************************/
+
+void MainWindow::on_pb_excel_clicked()
+{
+
+
+
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Excel file"), qApp->applicationDirPath (),
+                                                            tr("Excel Files (*.xls)"));
+            if (fileName.isEmpty())
+                return;
+
+            ExportExcelObject obj(fileName, "mydata", ui->table_handicape);
+
+            obj.addField(0, "ID", "char(20)");
+            obj.addField(1, "Nom", "char(20)");
+            obj.addField(2, "Prenom", "char(20)");
+            obj.addField(3, "Age", "char(20)");
+            obj.addField(4, "Tel", "char(20)");
+
+
+
+            int retVal = obj.export2Excel();
+
+            if( retVal > 0)
+            {
+                QMessageBox::information(this, tr("Done"),
+                                         QString(tr("%1 records exported!")).arg(retVal)
+                                         );
+            }
+}
+
+
+
+/*********************************************** insertion image(ajout)  *******************************************************/
+
+
+void MainWindow::on_pb_img_clicked()
+{
+    QString filename = QFileDialog::getOpenFileName(this,tr("choose"),"",tr(""));
+
+   if(QString::compare(filename,QString())!=0)
+   {QImage image;
+       bool valid=image.load(filename);
+       if(valid){
+
+           ui->img_name->setText(filename);
+           image=image.scaledToWidth(ui->image->width(),Qt::SmoothTransformation);
+           ui->image->setPixmap(QPixmap::fromImage(image));
+
+       }
+       else
+       {
+           QMessageBox::information(this, tr("ERROR"), QString(tr("Not Valid!")));
+       }
+   }
+}
+
+
+/*********************************************** insertion image(modifier)  *******************************************************/
+
+void MainWindow::on_pb_modifier_img_clicked()
+{
+    QString filename = QFileDialog::getOpenFileName(this,tr("choose"),"",tr(""));
+
+   if(QString::compare(filename,QString())!=0)
+   {QImage image;
+       bool valid=image.load(filename);
+       if(valid){
+
+           ui->txt_loc_img->setText(filename);
+           image=image.scaledToWidth(ui->image->width(),Qt::SmoothTransformation);
+           ui->txt_img->setPixmap(QPixmap::fromImage(image));
+
+       }
+       else
+       {
+           QMessageBox::information(this, tr("ERROR"), QString(tr("Not Valid!")));
+       }
+   }
 }

@@ -36,6 +36,16 @@ private slots:
 
     void on_rech_age_stateChanged(int arg1);
 
+    void on_pb_print_clicked();
+
+    void on_pb_imprimer_handicape_clicked();
+
+    void on_pb_excel_clicked();
+
+    void on_pb_img_clicked();
+
+    void on_pb_modifier_img_clicked();
+
 private:
     Ui::MainWindow *ui;
 handicape h;
