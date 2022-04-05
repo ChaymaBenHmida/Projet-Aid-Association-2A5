@@ -28,6 +28,7 @@
 QPushButton
 {
 	background-color: qlineargradient(spread:repeat, x1:0.486, y1:0, x2:0.505, y2:1, stop:0.00480769 rgba(170, 0, 0, 255),stop:1 rgba(122, 0, 0, 255));
+	background-color: rgb(187, 230, 250);
 	color: #ffffff;
 	font-weight: bold;
 	border-style: solid;
@@ -408,7 +409,7 @@ QLabel
         </rect>
        </property>
        <property name="text">
-        <string>Role</string>
+        <string>service</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_5">
@@ -470,16 +471,6 @@ QLabel
         </rect>
        </property>
       </widget>
-      <widget class="QLineEdit" name="le_role">
-       <property name="geometry">
-        <rect>
-         <x>110</x>
-         <y>270</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
       <widget class="QLineEdit" name="le_montant">
        <property name="geometry">
         <rect>
@@ -536,6 +527,31 @@ QLabel
         <string>Historique</string>
        </property>
       </widget>
+      <widget class="QComboBox" name="combo">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>270</y>
+         <width>131</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>Medecin </string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Enseignant</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Benevole</string>
+        </property>
+       </item>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="afficher">
@@ -570,14 +586,14 @@ QLabel
       <widget class="QLabel" name="label_10">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>200</y>
+         <x>20</x>
+         <y>190</y>
          <width>56</width>
          <height>16</height>
         </rect>
        </property>
        <property name="text">
-        <string>Role</string>
+        <string>Service</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_11">
@@ -834,6 +850,31 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
         </property>
        </widget>
       </widget>
+      <widget class="QComboBox" name="combo_modif">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>220</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>Medecin</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Enseignant</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Benevole</string>
+        </property>
+       </item>
+      </widget>
       <zorder>groupBox_3</zorder>
       <zorder>label_9</zorder>
       <zorder>label_10</zorder>
@@ -850,6 +891,7 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
       <zorder>tab_dons</zorder>
       <zorder>pb_modifier</zorder>
       <zorder>imprimer</zorder>
+      <zorder>combo_modif</zorder>
      </widget>
     </widget>
     <widget class="QWidget" name="tab">
@@ -919,9 +961,9 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
       <property name="geometry">
        <rect>
         <x>340</x>
-        <y>290</y>
-        <width>351</width>
-        <height>41</height>
+        <y>240</y>
+        <width>331</width>
+        <height>31</height>
        </rect>
       </property>
      </widget>
@@ -930,19 +972,6 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
        <rect>
         <x>70</x>
         <y>290</y>
-        <width>131</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Recherche</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="Recherche_id">
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>340</y>
         <width>131</width>
         <height>41</height>
        </rect>
@@ -974,21 +1003,33 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
        </rect>
       </property>
       <property name="text">
-       <string>ROLE</string>
+       <string>SERVICE</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_16">
+     <widget class="QComboBox" name="combo_recherche">
       <property name="geometry">
        <rect>
-        <x>230</x>
-        <y>350</y>
-        <width>56</width>
-        <height>16</height>
+        <x>350</x>
+        <y>300</y>
+        <width>321</width>
+        <height>31</height>
        </rect>
       </property>
-      <property name="text">
-       <string>ID</string>
-      </property>
+      <item>
+       <property name="text">
+        <string>Medecin</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Enseignant</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Benevole</string>
+       </property>
+      </item>
      </widget>
     </widget>
    </widget>

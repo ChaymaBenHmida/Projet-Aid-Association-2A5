@@ -104,28 +104,7 @@ bool Dons::modifier(int id)
 }
 
 
-QSqlQueryModel* Dons::recherche_id(int id)
-{
-  QSqlQueryModel* model=new QSqlQueryModel();
-QSqlQuery query;
 
- model->setQuery("SELECT id,prenom,nom,role,produit,montant FROM dons WHERE (id BETWEEN '0' AND '999999999')");
-
- model->setHeaderData(2, Qt::Horizontal, QObject::tr("nom"));
-model->setHeaderData(1, Qt::Horizontal,QObject:: tr("¨Prénom"));
-model->setHeaderData(3, Qt::Horizontal, QObject::tr("Role"));
- model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
-    model->setHeaderData(4, Qt::Horizontal, QObject::tr("Produit"));
-       model->setHeaderData(5, Qt::Horizontal, QObject::tr("Montant"));
-
-
-query.exec();
-  return  model;
-
-
-
-
-}
 QSqlQueryModel* Dons::recherche_nom(QString nom)
 {
   QSqlQueryModel* model=new QSqlQueryModel();

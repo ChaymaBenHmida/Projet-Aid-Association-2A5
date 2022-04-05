@@ -30,7 +30,7 @@ public:
 bool ajouter();
 QSqlQueryModel* afficher();
 bool supprimer(int);
- QSqlQueryModel* recherche_id(int);
+
 bool modifier(int);
 QSqlQueryModel* recherche_nom(QString);
 QSqlQueryModel* recherche_role3();

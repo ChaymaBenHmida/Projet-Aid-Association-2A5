@@ -11,6 +11,10 @@
 #include<QTextDocument>
 #include<QTextStream>
 #include<QSqlRecord>
+#include<QFile>
+#include<QFileDevice>
+#include<historique.h>
+#include<QDesktopServices>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -49,8 +53,12 @@ void MainWindow::on_pb_ajouter_clicked()
    int montant=ui->le_montant->text().toInt();
    QString nom=ui->le_nom->text();
    QString prenom=ui->le_prenom->text();
-QString  role=ui->le_role->text();
+//QString  role=ui->le_role->text();
 QString produit=ui->le_produit->text();
+QString role =ui->combo->currentText();
+Historique h;
+          h.save("id:"+ui->le_cin->text(),"montant:"+ui->le_montant->text()," role:"+ui->combo->currentText(),"prenom :"+ui->le_prenom->text(),"nom :"+ui->le_nom->text(),"produit :"+ui->le_produit->text());
+
 
    Dons D( id, nom, prenom,role ,produit , montant);
 
@@ -113,9 +121,11 @@ void MainWindow::on_pb_modifier_clicked()
 
 
         int id=ui->le_role_2->text().toUInt();
+
  QString prenom=ui->le_prenom_2->text();
 QString nom=ui->le_cin_2->text();
- QString role=ui->le_nom_2->text();
+ //QString role=ui->le_nom_2->text();
+QString role=ui->combo_modif->currentText();
  int montant=ui->le_produit_2->text().toUInt();
  QString produit=ui->le_montant_2->text();
 
@@ -148,7 +158,8 @@ void MainWindow::on_tab_dons_activated(const QModelIndex &index)
         while(qry.next())
         {
             ui->le_cin_2->setText(qry.value(0).toString());
-             ui->le_nom_2->setText(qry.value(2).toString());
+          ui->le_nom_2->setText(qry.value(2).toString());
+
             ui->le_prenom_2->setText(qry.value(1).toString());
 
             ui->le_role_2->setText(qry.value(3).toString());
@@ -276,15 +287,43 @@ void MainWindow::on_pushButton_5_clicked()
 
 void MainWindow::on_recherche_role_clicked()
 {
-    QString role=ui->recherche->text();
+   // QString role=ui->recherche->text();
+    QString role=ui->combo_recherche->currentText();
 
     ui->tab_recherche->setModel(D.recherche_role(role)) ;
 }
 
-void MainWindow::on_Recherche_id_clicked()
+
+/*void MainWindow::on_pushButton_4_clicked()
 {
- int id =ui->recherche->text().toInt();
+    int id=ui->le_cin->text().toInt();
+    int montant=ui->le_montant->text().toInt();
+    QString nom=ui->le_nom->text();
+    QString prenom=ui->le_prenom->text();
+ //QString  role=ui->le_role->text();
+ QString produit=ui->le_produit->text();
+ QString role =ui->combo->currentText();
 
-    ui->tab_recherche->setModel(D.recherche_id(id)) ;
+    Dons D( id, nom, prenom,role ,produit , montant);
+    QFile file("historique.txt");
+    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        //le code fonctionne
+        QTextStream ecriture(&file);
+        ecriture<<"ID:" +id;
+         ecriture<<"Nom:" +nom;
+          ecriture<<"prenom:" +prenom;
+           ecriture<<"role:" +role;
+            ecriture<<"produit:" +produit;
+            file.close();
+    }
+
+
+
+}*/
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    QString link="C:/Users/user/Documents/projetQT/Historiques.txt";
+       QDesktopServices::openUrl(QUrl(link));
 }
-

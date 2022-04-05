@@ -1,0 +1,12 @@
+id:4886
+montant:5
+ role:Enseignant
+prenom :A
+produit :C
+nom :B
+id:8888
+montant:500
+ role:Enseignant
+prenom :T
+produit :C
+nom :B

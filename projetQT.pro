@@ -1,5 +1,6 @@
 QT       += sql
 QT       += core gui printsupport
+QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -19,12 +20,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     connection.cpp \
     dons.cpp \
+    historique.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     connection.h \
     dons.h \
+    historique.h \
     mainwindow.h
 
 FORMS += \

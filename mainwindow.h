@@ -48,12 +48,7 @@ private slots:
 
     void on_recherche_role_clicked();
 
-    void on_Recherche_id_clicked();
-
-
-
-
-
+    void on_pushButton_4_clicked();
 
 private:
     Ui::MainWindow *ui;
