@@ -10,12 +10,18 @@
 #include <QPrintDialog>
 #include <QSystemTrayIcon>
 #include <QFileDialog>
+#include <QDateEdit>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
      ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    ui->datee->setModel(h.afficher_rdv());
+ui->comboBox->setModel(h.afficher_id());
+
+
 ui->table_handicape->setModel(h.afficher());
 ui->id->setValidator(new QIntValidator(0,9999,this));
 ui->age->setValidator(new QIntValidator(0,18,this));
@@ -429,3 +435,146 @@ void MainWindow::on_pb_modifier_img_clicked()
        }
    }
 }
+
+
+/******** test rdv *****/
+
+void MainWindow::on_pushButton_2_clicked()
+{
+   QString rdvv=ui->rdvv->date().toString("dd.MM.yyyy");
+int id=ui->comboBox->currentText().toUInt();
+
+//QDate rdvv=ui->rdvv->date();
+    QSqlQuery query;
+ //query.bindValue(":rdvv",rdvv);
+    query.prepare("INSERT INTO  test(rdvv,id)""values(?,?)");
+    query.addBindValue(rdvv);
+query.addBindValue(id);
+                          if(!query.exec())
+                              {
+                                 // QMessageBox::text(this, "Erreur requête");
+                              }
+
+
+
+    //return query.exec();
+}
+
+
+
+
+
+void MainWindow::on_datee_activated(const QModelIndex &index)
+{
+//ui->datee->setModel(h.afficher_rdv());
+
+
+
+
+QString val=ui->datee->model()->data(index).toString();
+QSqlQuery qry ;
+qry.prepare("select rdvv from test where rdvv='"+ val+"'");
+
+
+if(qry.exec())
+{
+while(qry.next())
+{
+    ui->date_rdvv->setText(qry.value(0).toString());
+   QString date=qry.value(0).toString();
+
+   QDate date_entree1 =qry.value(0).toDate(); //transformer date ml string lel type date
+   QDate date_actuelle = QDate::currentDate(); //date lyoumm
+QString date_lyoum=date_actuelle.toString("dd.MM.yyyy");
+QDate lyoum=QDate::fromString(date_lyoum, "dd.MM.yyyy");
+
+QString dd=date_actuelle.toString();
+ui->date_lyoum->setText(date_lyoum);
+
+   if( (date_entree1)==(lyoum))
+               {
+                   ui->label_rdv->setText("egale");
+               }
+
+               else if ((date_entree1)>(lyoum))
+               {
+                   ui->label_rdv->setText("akber");
+               }else{ui->label_rdv->setText("asgher");}
+
+}
+}else {
+    QMessageBox::critical(nullptr,QObject::tr("Not ok"),QObject::tr("ERROR" "click cancel to exit."),QMessageBox::Cancel);
+}
+
+
+
+}
+
+
+
+
+void MainWindow::on_comboBox_activated(const QString &arg1)
+{
+}
+
+
+void MainWindow::on_pushButton_3_clicked()
+{ QModelIndex index;
+
+    if ( ! index.isValid() ) {
+         QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+
+         notifyIcon->show();
+         notifyIcon->showMessage("Gestion des RDVs ","Pas de RDV pour aujourd hui ",QSystemTrayIcon::Information,15000);
+
+         return;
+
+       }
+
+    QSqlQueryModel * model=new QSqlQueryModel();
+
+    model->setQuery("select * from test ");
+    int cols =model->rowCount();
+index.row();
+    for(int c=0;c<index.row();c++)
+    {
+
+        QString val=ui->datee->model()->data(index).toString();
+        QSqlQuery qry ;
+        qry.prepare("select rdvv from test where rdvv='"+ val+"'");
+
+
+        if(qry.exec())
+        {
+        while(qry.next())
+        {
+            ui->date_rdvv->setText(qry.value(0).toString());
+           QString date=qry.value(0).toString();
+
+           QDate date_entree1 =qry.value(0).toDate(); //transformer date ml string lel type date
+           QDate date_actuelle = QDate::currentDate(); //date lyoumm
+        QString date_lyoum=date_actuelle.toString("dd.MM.yyyy");
+        QDate lyoum=QDate::fromString(date_lyoum, "dd.MM.yyyy");
+
+        QString dd=date_actuelle.toString();
+        ui->date_lyoum->setText(date_lyoum);
+
+           if( (date_entree1)==(lyoum))
+                       {
+                           ui->label_rdv->setText("egale");
+                           QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+
+                           notifyIcon->show();
+                           notifyIcon->showMessage("Gestion des RDVs ","il y a  RDV pour aujourd hui ",QSystemTrayIcon::Information,15000);
+
+                           return;
+                       }
+}
+        }
+        }
+}
+
+
+
+
+

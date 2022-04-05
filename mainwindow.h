@@ -46,6 +46,18 @@ private slots:
 
     void on_pb_modifier_img_clicked();
 
+    void on_pushButton_2_clicked();
+
+    void on_tableWidget_cellActivated(int row, int column);
+
+    void on_table_rdv_activated(const QModelIndex &index);
+
+    void on_datee_activated(const QModelIndex &index);
+
+    void on_comboBox_activated(const QString &arg1);
+
+    void on_pushButton_3_clicked();
+
 private:
     Ui::MainWindow *ui;
 handicape h;

@@ -97,7 +97,7 @@ QSqlQuery handicape::editview(QString info)
 {
 QSqlQuery query;
 //query.prepare("select * from handicape where id='"+info+"'");
-query.prepare("select * from handicape ");
+query.prepare("select * from handiecap ");
 
 if(query.exec())
  {
@@ -105,3 +105,23 @@ return query;
  }
 
 }
+
+
+QSqlQueryModel * handicape::afficher_rdv()
+{
+    QSqlQueryModel * model=new QSqlQueryModel();
+
+    model->setQuery("select * from test  ");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("rdvv"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("id"));
+
+    return model ;
+};
+
+QSqlQueryModel * handicape::afficher_id()
+{
+QSqlQueryModel * model=new QSqlQueryModel();
+
+model->setQuery("select id from handicape");
+return model ;
+};

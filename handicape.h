@@ -50,6 +50,9 @@ public:
    void notifications_ajouter();
    void notifications_modifier();
 
+
+   QSqlQueryModel * afficher_rdv();
+   QSqlQueryModel * afficher_id();
 };
 
 #endif // HANDICAPE_H
