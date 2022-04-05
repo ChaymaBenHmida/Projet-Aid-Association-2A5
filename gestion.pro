@@ -1,4 +1,6 @@
 QT       += sql
+QT       += printsupport
+QT       += core gui serialport printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -18,7 +20,8 @@ SOURCES += \
     connection.cpp \
     employes.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    recherche.cpp
 
 HEADERS += \
     connection.h \

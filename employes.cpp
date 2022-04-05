@@ -4,11 +4,11 @@
 #include <QtDebug>
 Employe::Employe()
 {
-    cin=0;telephone=0,jours_de_travail=0;
+    cin=0;telephone=0,jours_de_travail="";
     nom= " ";prenom="",fonction="";
     salaire=0;
 }
-Employe:: Employe(int cin,QString nom, QString prenom,int telephone,int jours_de_travail,int salaire,QString fonction)
+Employe:: Employe(int cin,QString nom, QString prenom,int telephone,QString jours_de_travail,int salaire,QString fonction)
  {
 this->cin=cin;
 this->telephone=telephone;
@@ -22,7 +22,7 @@ this->salaire=salaire;
 int Employe::getcin(){return cin;}
 
 int Employe:: gettelephone(){return telephone;}
-int Employe:: getjours_de_travail(){return jours_de_travail;}
+QString Employe:: getjours_de_travail(){return jours_de_travail;}
 QString Employe:: getnom(){return nom;}
 QString Employe::getprenom(){return prenom;}
 QString Employe:: getfonction(){return fonction;}
@@ -30,7 +30,7 @@ int Employe::getsalaire(){return salaire;}
 void Employe::setcin(int cin){this->cin=cin;}
 
 void Employe::settelephone(int telephone){this->telephone=telephone;}
-void Employe::setjours_de_travail(int jours_de_travail){this->jours_de_travail=jours_de_travail;}
+void Employe::setjours_de_travail(QString jours_de_travail){this->jours_de_travail=jours_de_travail;}
 void Employe::setnom(QString nom){this->nom=nom;}
 void Employe::setprenom(QString prenom){this->prenom=prenom;}
 void Employe::setfonction(QString fonction){this->fonction=fonction;}
@@ -102,4 +102,41 @@ query.bindValue(":cin",cin);
 return query.exec();
 }
 
+QSqlQuery Employe::editview(QString info)
 
+{
+QSqlQuery query;
+//query.prepare("select * from employe where id='"+info+"'");
+query.prepare("select * from employe ");
+
+if(query.exec())
+ {
+return query;
+ }
+
+}
+//---------------triii------
+QSqlQueryModel * Employe::afficher_tri_nom()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+model->setQuery("select * from EMPLOYE order by NOM asc ");
+
+    return model;
+}
+QSqlQueryModel * Employe::afficher_tri_prenom()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+model->setQuery("select * from EMPLOYE order by PRENOM asc ");
+
+    return model;
+}
+QSqlQueryModel * Employe::afficher_tri_fonction()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+model->setQuery("select * from EMPLOYE order by FONCTION asc ");
+
+    return model;
+}
