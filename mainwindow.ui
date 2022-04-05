@@ -671,16 +671,6 @@
         <string>ajouter RDV</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="date_rdvv">
-       <property name="geometry">
-        <rect>
-         <x>430</x>
-         <y>190</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
       <widget class="QTableView" name="datee">
        <property name="geometry">
         <rect>
@@ -769,16 +759,29 @@
         <pixmap>../bg.png</pixmap>
        </property>
       </widget>
+      <widget class="QLabel" name="date_rdvv">
+       <property name="geometry">
+        <rect>
+         <x>490</x>
+         <y>20</y>
+         <width>56</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+      </widget>
       <zorder>label_27</zorder>
       <zorder>rdvv</zorder>
       <zorder>pushButton_2</zorder>
-      <zorder>date_rdvv</zorder>
       <zorder>datee</zorder>
       <zorder>label_rdv</zorder>
       <zorder>date_lyoum</zorder>
       <zorder>comboBox</zorder>
       <zorder>pushButton_3</zorder>
       <zorder>label_7</zorder>
+      <zorder>date_rdvv</zorder>
      </widget>
     </widget>
    </widget>

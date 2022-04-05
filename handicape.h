@@ -50,7 +50,7 @@ public:
    void notifications_ajouter();
    void notifications_modifier();
 
-
+QSqlQuery editview_rdv(QString info);
    QSqlQueryModel * afficher_rdv();
    QSqlQueryModel * afficher_id();
 };

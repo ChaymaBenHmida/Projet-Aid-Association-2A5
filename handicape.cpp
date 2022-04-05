@@ -106,6 +106,20 @@ return query;
 
 }
 
+QSqlQuery handicape::editview_rdv(QString info)
+
+{
+QSqlQuery query;
+
+query.prepare("select * from test ");
+
+if(query.exec())
+ {
+return query;
+ }
+
+}
+
 
 QSqlQueryModel * handicape::afficher_rdv()
 {

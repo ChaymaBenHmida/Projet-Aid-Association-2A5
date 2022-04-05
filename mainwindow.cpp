@@ -439,6 +439,7 @@ void MainWindow::on_pb_modifier_img_clicked()
 
 /******** test rdv *****/
 
+/*****ajouter rdv*******/
 void MainWindow::on_pushButton_2_clicked()
 {
    QString rdvv=ui->rdvv->date().toString("dd.MM.yyyy");
@@ -450,22 +451,26 @@ int id=ui->comboBox->currentText().toUInt();
     query.prepare("INSERT INTO  test(rdvv,id)""values(?,?)");
     query.addBindValue(rdvv);
 query.addBindValue(id);
-                          if(!query.exec())
+
+
+if(!query.exec())
                               {
-                                 // QMessageBox::text(this, "Erreur requête");
+                                 //QMessageBox::text(this, "Erreur requête");
                               }
+ui->datee->setModel(h.afficher_rdv());
 
 
 
-    //return query.exec();
+
 }
 
 
 
-
+/**************************************************************************************************************************/
 
 void MainWindow::on_datee_activated(const QModelIndex &index)
 {
+    /*
 //ui->datee->setModel(h.afficher_rdv());
 
 
@@ -507,7 +512,7 @@ ui->date_lyoum->setText(date_lyoum);
 }
 
 
-
+*/
 }
 
 
@@ -515,63 +520,67 @@ ui->date_lyoum->setText(date_lyoum);
 
 void MainWindow::on_comboBox_activated(const QString &arg1)
 {
+
 }
 
 
 void MainWindow::on_pushButton_3_clicked()
-{ QModelIndex index;
+{
 
-    if ( ! index.isValid() ) {
-         QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
-
-         notifyIcon->show();
-         notifyIcon->showMessage("Gestion des RDVs ","Pas de RDV pour aujourd hui ",QSystemTrayIcon::Information,15000);
-
-         return;
-
-       }
-
-    QSqlQueryModel * model=new QSqlQueryModel();
-
-    model->setQuery("select * from test ");
-    int cols =model->rowCount();
-index.row();
-    for(int c=0;c<index.row();c++)
-    {
-
-        QString val=ui->datee->model()->data(index).toString();
-        QSqlQuery qry ;
-        qry.prepare("select rdvv from test where rdvv='"+ val+"'");
+    QModelIndex index=ui->datee->currentIndex();
+   QString  info = index.data(Qt::DisplayRole).toString();
+   QSqlQuery view;
+   QPlainTextEdit text;
+    handicape h;
 
 
-        if(qry.exec())
-        {
-        while(qry.next())
-        {
-            ui->date_rdvv->setText(qry.value(0).toString());
-           QString date=qry.value(0).toString();
+          view=h.editview_rdv(info);
+ int i=0;
+          while ( view.next()) {
 
-           QDate date_entree1 =qry.value(0).toDate(); //transformer date ml string lel type date
-           QDate date_actuelle = QDate::currentDate(); //date lyoumm
-        QString date_lyoum=date_actuelle.toString("dd.MM.yyyy");
-        QDate lyoum=QDate::fromString(date_lyoum, "dd.MM.yyyy");
+             // ui->date_rdvv->setText(view.value(0).toString());
+             QString date=view.value(0).toString();
 
-        QString dd=date_actuelle.toString();
-        ui->date_lyoum->setText(date_lyoum);
+             QDate date_entree1 =view.value(0).toDate(); //transformer date ml string lel type date
+             QDate date_actuelle = QDate::currentDate(); //date lyoumm
+          QString date_lyoum=date_actuelle.toString("dd.MM.yyyy");
+          QDate lyoum=QDate::fromString(date_lyoum, "dd.MM.yyyy");
 
-           if( (date_entree1)==(lyoum))
-                       {
-                           ui->label_rdv->setText("egale");
-                           QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
 
-                           notifyIcon->show();
-                           notifyIcon->showMessage("Gestion des RDVs ","il y a  RDV pour aujourd hui ",QSystemTrayIcon::Information,15000);
+          ui->date_lyoum->setText(date_lyoum);
 
-                           return;
-                       }
+             if( (date_entree1)==(lyoum))
+                         { //i++;
+                             ui->label_rdv->setText("egale");
+                         }
+
+                         else
+                         { //i++;
+                             ui->label_rdv->setText("different");
+                         }
+
+          }
+          /*******notification rdv aujourdhui******/
+          QString ii=QString::number(i);
+          ui->date_rdvv->setText(ii);
+
+          if(i!=0){
+          QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+
+          notifyIcon->show();
+          notifyIcon->showMessage("Gestion des RDVs ","i RDV pour aujourd hui ",QSystemTrayIcon::Information,15000);
+          }else {
+              QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+
+              notifyIcon->show();
+              notifyIcon->showMessage("Gestion des RDVs ","Pas de RDV pour aujourd hui ",QSystemTrayIcon::Information,15000);
+
 }
-        }
-        }
+
+
+
+
+
 }
 
 
