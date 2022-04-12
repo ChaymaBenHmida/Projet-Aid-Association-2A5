@@ -11,6 +11,8 @@
 #include <QSystemTrayIcon>
 #include <QFileDialog>
 #include <QDateEdit>
+#include <QDate>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -470,7 +472,7 @@ ui->datee->setModel(h.afficher_rdv());
 
 void MainWindow::on_datee_activated(const QModelIndex &index)
 {
-    /*
+/*
 //ui->datee->setModel(h.afficher_rdv());
 
 
@@ -495,24 +497,28 @@ QDate lyoum=QDate::fromString(date_lyoum, "dd.MM.yyyy");
 
 QString dd=date_actuelle.toString();
 ui->date_lyoum->setText(date_lyoum);
+QDate test=dayOfWeek(lyoum);
+ui->label_rdv->setText(test.toString());
 
    if( (date_entree1)==(lyoum))
                {
-                   ui->label_rdv->setText("egale");
+                 //  ui->label_rdv->setText("egale");
                }
 
                else if ((date_entree1)>(lyoum))
                {
-                   ui->label_rdv->setText("akber");
-               }else{ui->label_rdv->setText("asgher");}
+                 //  ui->label_rdv->setText("akber");
+               }else{
+       //ui->label_rdv->setText("asgher");
+   }
 
 }
 }else {
     QMessageBox::critical(nullptr,QObject::tr("Not ok"),QObject::tr("ERROR" "click cancel to exit."),QMessageBox::Cancel);
 }
 
-
 */
+
 }
 
 
@@ -534,14 +540,17 @@ void MainWindow::on_pushButton_3_clicked()
     handicape h;
 
 
+
           view=h.editview_rdv(info);
  int i=0;
           while ( view.next()) {
 
              // ui->date_rdvv->setText(view.value(0).toString());
              QString date=view.value(0).toString();
+QDate date_entree1=QDate::fromString(date, "dd.MM.yyyy");
 
-             QDate date_entree1 =view.value(0).toDate(); //transformer date ml string lel type date
+             //QDate date_entree1 =view.value(0).toDate(); //transformer date ml string lel type date
+
              QDate date_actuelle = QDate::currentDate(); //date lyoumm
           QString date_lyoum=date_actuelle.toString("dd.MM.yyyy");
           QDate lyoum=QDate::fromString(date_lyoum, "dd.MM.yyyy");
@@ -550,12 +559,12 @@ void MainWindow::on_pushButton_3_clicked()
           ui->date_lyoum->setText(date_lyoum);
 
              if( (date_entree1)==(lyoum))
-                         { //i++;
+                         { i++;
                              ui->label_rdv->setText("egale");
                          }
 
                          else
-                         { //i++;
+                         {
                              ui->label_rdv->setText("different");
                          }
 
@@ -568,7 +577,7 @@ void MainWindow::on_pushButton_3_clicked()
           QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
 
           notifyIcon->show();
-          notifyIcon->showMessage("Gestion des RDVs ","i RDV pour aujourd hui ",QSystemTrayIcon::Information,15000);
+          notifyIcon->showMessage("Gestion des RDVs "," RDV pour aujourd hui ",QSystemTrayIcon::Information,15000);
           }else {
               QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
 
