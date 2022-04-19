@@ -1,0 +1,136 @@
+id_depenses:1
+date_depenses :01/01/2000
+type_depenses :Materiels
+montant :142
+id_depenses:6
+date_depenses :01/01/2000
+type_depenses :Salaires
+montant :2472174
+id_depenses:7
+date_depenses :04/04/2022
+type_depenses :Evenements
+montant :12151
+id_depenses:8
+date_depenses :01/01/2000
+type_depenses :Evenements
+montant :120
+id_depenses:0
+date_depenses :01/01/2000
+type_depenses :Evenements
+montant :450
+id_depenses:5
+date_depenses :14/02/2014
+type_depenses :Evenements
+montant :1400
+id_depenses:6
+date_depenses :17/03/2021
+type_depenses :Repas
+montant :400
+id_depenses:1
+date_depenses :01/01/2000
+type_depenses :Materiels
+montant :5
+id_depenses:1
+date_depenses :01/01/2000
+type_depenses :Materiels
+montant :414
+id_depenses:1
+date_depenses :14/12/2021
+type_depenses :Materiels
+montant :140
+id_depenses:1
+date_depenses :14/12/2021
+type_depenses :Materiels
+montant :
+id_depenses:1
+date_depenses :15/12/2021
+type_depenses :Medicaments
+montant :90
+id_depenses:2
+date_depenses :15/12/2021
+type_depenses :Medicaments
+montant :90
+id_depenses:3
+date_depenses :16/12/2021
+type_depenses :Repas
+montant :40
+id_depenses:4
+date_depenses :16/12/2021
+type_depenses :Evenements
+montant :1040
+id_depenses:5
+date_depenses :17/12/2021
+type_depenses :Salaires
+montant :40000
+id_depenses:6
+date_depenses :17/12/2021
+type_depenses :Autres
+montant :400
+id_depenses:4
+date_depenses :17/12/2021
+type_depenses :Evenements
+montant :40
+id_depenses:5
+date_depenses :18/12/2021
+type_depenses :Salaires
+montant :40000
+id_depenses:6
+date_depenses :18/12/2021
+type_depenses :Materiels
+montant :100
+id_depenses:7
+date_depenses :14/07/2001
+type_depenses :Materiels
+montant :120
+id_depenses:5
+date_depenses :17/12/2021
+type_depenses :Evenements
+montant :1020
+id_depenses:5
+date_depenses :01/01/2000
+type_depenses :Materiels
+montant :95515
+id_depenses:1
+date_depenses :01/04/2022
+type_depenses :Materiels
+montant :1200
+id_depenses:2
+date_depenses :02/04/2022
+type_depenses :Medicaments
+montant :400
+id_depenses:3
+date_depenses :03/04/2022
+type_depenses :Repas
+montant :520
+id_depenses:4
+date_depenses :04/04/2022
+type_depenses :Evenements
+montant :4200
+id_depenses:5
+date_depenses :05/04/2022
+type_depenses :Salaires
+montant :10200
+id_depenses:6
+date_depenses :06/04/2022
+type_depenses :Autres
+montant :50
+id_depenses:1
+date_depenses :01/01/2000
+type_depenses :Materiels
+montant :1424
+id_depenses:2
+date_depenses :11/04/2022
+type_depenses :Medicaments
+montant :420
+id_depenses:3
+date_depenses :12/04/2022
+type_depenses :Repas
+montant :42
+id_depenses:4
+date_depenses :13/04/2022
+type_depenses :Evenements
+montant :5230
+id_depenses:5
+date_depenses :14/04/2022
+type_depenses :Salaires
+montant :10000
