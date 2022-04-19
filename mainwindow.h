@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include "handicape.h"
+#include "arduino.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -16,6 +17,8 @@ public:
     ~MainWindow();
 
 private slots:
+    void update_label();
+
     void on_pb_ajouter_clicked();
 
     void on_pb_supprimer_clicked();
@@ -58,8 +61,20 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_9_clicked();
+
+    void on_label_11_linkActivated(const QString &link);
+
+    void on_update_label_linkActivated(const QString &link);
+
 private:
     Ui::MainWindow *ui;
 handicape h;
+
+QByteArray data; // variable contenant les données reçues
+
+Arduino A; // objet temporaire
 };
 #endif // MAINWINDOW_H
