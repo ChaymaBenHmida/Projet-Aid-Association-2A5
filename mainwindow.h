@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include "employes.h"
+#include "arduino.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -45,10 +46,26 @@ private slots:
     void on_tri_prenom_clicked();
     void on_tri_fonction_clicked();
 
+    void update_label();   // slot permettant la mise à jour du label état de la lampe 1,
+    // ce slot est lancé à chaque réception d'un message de Arduino
+
+
+
+
+
+    void on_on_button_clicked();
+
+    void on_off_button_clicked();
+
+    void on_label_23_linkActivated(const QString &link);
+
 private:
     Ui::MainWindow *ui;
     Employe E;
     int me;
+    QByteArray data; // variable contenant les données reçues
+
+    Arduino A; // objet temporaire
 };
 
 #endif // MAINWINDOW_H

@@ -17,8 +17,8 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>0</y>
+      <x>0</x>
+      <y>20</y>
       <width>1011</width>
       <height>561</height>
      </rect>
@@ -29,7 +29,7 @@ background-color: rgb(220, 243, 255);
 </string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="Ajouter">
      <attribute name="title">
@@ -362,19 +362,6 @@ max-height: 30px;
        <pixmap>../../274607209_670391844097957_6948825904262534585_n.png</pixmap>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="geometry">
-       <rect>
-        <x>530</x>
-        <y>190</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>calendrier</string>
-      </property>
-     </widget>
      <widget class="QCalendarWidget" name="calendarWidget">
       <property name="geometry">
        <rect>
@@ -398,11 +385,6 @@ max-height: 30px;
        <string>sms</string>
       </property>
      </widget>
-     <zorder>groupBox</zorder>
-     <zorder>pushButton_2</zorder>
-     <zorder>label_19</zorder>
-     <zorder>calendarWidget</zorder>
-     <zorder>pushButton_6</zorder>
     </widget>
     <widget class="QWidget" name="Afficher">
      <attribute name="title">
@@ -1111,6 +1093,80 @@ max-height: 30px;</string>
       </property>
       <property name="text">
        <string>GO</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>arduino</string>
+     </attribute>
+     <widget class="QPushButton" name="on_button">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>140</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>on</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="off_button">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>140</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>off</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_24">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>320</y>
+        <width>341</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>MS Serif</family>
+        <pointsize>20</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Nembre attein ou non </string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_23">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>310</y>
+        <width>291</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+        <strikeout>true</strikeout>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>

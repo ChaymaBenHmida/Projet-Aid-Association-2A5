@@ -15,12 +15,27 @@
 #include <QFileDialog>
 #include <QTextDocument>
 #include <QTextStream>
+#include "arduino.h"
 QString days="";
     MainWindow::MainWindow(QWidget *parent)
         : QMainWindow(parent)
         , ui(new Ui::MainWindow)
     {
         ui->setupUi(this);
+        //---------------------------------------------------ARDUINOO----------------------------------------------------------------------------------------------
+
+        int ret=A.connect_arduino(); // lancer la connexion à arduino
+        switch(ret){
+        case(0):qDebug()<< "arduino is available and connected to : "<< A.getarduino_port_name();
+            break;
+        case(1):qDebug() << "arduino is available but not connected to :" <<A.getarduino_port_name();
+           break;
+        case(-1):qDebug() << "arduino is not available";
+        }
+         QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label())); // permet de lancer
+         //le slot update_label suite à la reception du signal readyRead (reception des données).
+        // --------------------------------------------------------------------------------------------------------------------------------------------
+
         ui->table_E->setModel(E.afficher());
         ui->le_cin->setValidator(new QIntValidator(0,99999999,this));
                 ui->le_tel->setValidator(new QIntValidator(0,99999999,this));
@@ -46,6 +61,31 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+//---------------------------Arduinoooo-------------------------------------------------
+void MainWindow::update_label()
+{
+    data=A.read_from_arduino();
+
+    if(data=="1")
+
+        ui->label_23->setText("Nembre ATTEIN"); // si les données reçues de arduino via la liaison série sont égales à 1
+    // alors afficher ON
+
+    else if (data=="0")
+
+        ui->label_23->setText("Nembre NON ATTEIN");   // si les données reçues de arduino via la liaison série sont égales à 0
+     //alors afficher ON
+}
+
+
+
+
+
+//--------------------------------------------------------------------------------------------------------
+
+
+
 
 
 void MainWindow::on_pb_ajouter_clicked()
@@ -154,7 +194,7 @@ void MainWindow::on_pb_supprimer_clicked()
 
 void MainWindow::on_pushButton_6_clicked()
 {
-   // QDesktopServices::openUrl(QUrl("https://www.tunisiesms.tn/client/Api/Api.aspx?fct=sms&key=8AyZ/Lm/Xo/-/XuoYDrY7SAH24WFS9LNNnNdBX5rq4LKdwxHF9uRijDREh9y5//v7fSG59iW9vUhwpNdmQgfkfm8l/-/7YM9IRM4&mobile=21620585505&sms=test qt&sender=TunSMS Test&date=04/04/2022&heure=14:44"));
+    QDesktopServices::openUrl(QUrl("https://www.tunisiesms.tn/client/Api/Api.aspx?fct=sms&key=8AyZ/Lm/Xo/-/XuoYDrY7SAH24WFS9LNNnNdBX5rq4LKdwxHF9uRijDREh9y5//v7fSG59iW9vUhwpNdmQgfkfm8l/-/7YM9IRM4&mobile=21620585505&sms=Bonjour vous avez une reunion aujourd'hui date 05/04/2021&sender=TunSMS Test&date=04/04/2022&heure=14:44"));
 }
 
 void MainWindow::on_pb_go_clicked()
@@ -333,3 +373,20 @@ void MainWindow::on_tri_fonction_clicked()
 {
      ui->table_E->setModel(E.afficher_tri_fonction());
 }
+
+
+
+//-----------Arduinoooo--------------------------------------------------------------------------------
+
+
+void MainWindow::on_on_button_clicked()
+{
+      A.write_to_arduino("1"); //envoyer 1 à arduino
+}
+
+void MainWindow::on_off_button_clicked()
+{
+     A.write_to_arduino("0");  //envoyer 0 à arduino
+}
+
+
