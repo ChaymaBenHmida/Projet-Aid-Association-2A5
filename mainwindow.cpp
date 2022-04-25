@@ -15,6 +15,11 @@
 #include<QFileDevice>
 #include<historique.h>
 #include<QDesktopServices>
+#include<QDate>
+#include<QDateEdit>
+#include<QDateTimeEdit>
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -26,6 +31,7 @@ QRegExp rx("^[A-Z][a-z]{0,10}$");
         ui->le_nom->setValidator(new QRegExpValidator(rx, this));
  ui->le_cin_2->setValidator(new QRegExpValidator(rx, this));
         ui->le_prenom->setValidator(new QRegExpValidator(rx, this));
+         ui->recherche->setValidator(new QRegExpValidator(rx, this));
 
          ui->le_produit->setValidator(new QRegExpValidator(rx, this));
         ui->le_cin->setValidator(new QIntValidator (1,99999999,this));
@@ -56,11 +62,29 @@ void MainWindow::on_pb_ajouter_clicked()
 //QString  role=ui->le_role->text();
 QString produit=ui->le_produit->text();
 QString role =ui->combo->currentText();
-Historique h;
-          h.save("id:"+ui->le_cin->text(),"montant:"+ui->le_montant->text()," role:"+ui->combo->currentText(),"prenom :"+ui->le_prenom->text(),"nom :"+ui->le_nom->text(),"produit :"+ui->le_produit->text());
+QDate dates=ui->date->date();
+//enregistrement de l'historique
+QFile file("C:/Users/user/Documents/projetQT/historiques.txt");
+        if(!file.open(QIODevice::Append)){
+            qCritical() << "file not found ";
+            qCritical() << file.errorString();
 
+        }
+        //qInfo() << "writing file ..";
+        QTextStream stream(&file);
 
-   Dons D( id, nom, prenom,role ,produit , montant);
+        stream << QString() << "ID : " << id << "\n";
+        stream << QString() << "Nom : " << nom<< "\n";
+        stream << QString() << "Prénom : " <<prenom<< "\n";
+        stream << QString() << "Montant : " <<montant<< "\n";
+        stream << QString() << "Produit : " << produit<< "\n";
+        stream << QString() << "Service : " << role<< "\n";
+       // stream << QString << "Date : " << dates<< "\n";
+        stream << QString() <<"---------------------------------\n";
+
+        file.close();
+
+   Dons D( id, nom, prenom,role ,produit , montant,dates);
 
     bool test=D.ajouter();
     if(test)
@@ -128,10 +152,11 @@ QString nom=ui->le_cin_2->text();
 QString role=ui->combo_modif->currentText();
  int montant=ui->le_produit_2->text().toUInt();
  QString produit=ui->le_montant_2->text();
+ QDate dates=ui->date_modif->date();
 
 
 
-   Dons D(  id, nom, prenom, role ,produit , montant);
+   Dons D(  id, nom, prenom, role ,produit , montant,dates);
     bool test=D.modifier(id);
     if(test)
     {
@@ -165,6 +190,7 @@ void MainWindow::on_tab_dons_activated(const QModelIndex &index)
             ui->le_role_2->setText(qry.value(3).toString());
              ui->le_montant_2->setText(qry.value(4).toString());
               ui->le_produit_2->setText(qry.value(5).toString());
+                ui->date_modif->setDate(qry.value(6).toDate());
 
         }
     }
@@ -214,7 +240,7 @@ void MainWindow::on_divide_clicked()
     writelabelResult( result);
 }
 
-
+// preparer la table à imprimer mel base de donnnées
 void PrintTable( QPrinter* printer, QSqlQuery&  Query ) {
   QString strStream;
   QTextStream out(&strStream);
@@ -225,13 +251,14 @@ void PrintTable( QPrinter* printer, QSqlQuery&  Query ) {
   out <<  "<html>\n"
       "<head>\n"
       "<meta Content=\"Text/html; charset=Windows-1251\">\n"
-      <<  QString("<title>%1</title>\n").arg("Dons")
+      <<  QString("<title>%1 </title>\n").arg("Dons")
       <<  "</head>\n"
       "<body bgcolor=#ffffff link=#5000A0>\n"
-      "<table border=1 cellspacing=0 cellpadding=2>\n";
+      "<table width=110% border=1 cellspacing=10 cellpadding=2 > \n";
+
 
   // headers
-  out << "<thead><tr bgcolor=#f0f0f0>";
+  out << "<thead><tr bgcolor=#FFE5B4>";
   for (int column = 0; column < columnCount; column++)
     out << QString("<th>%1</th>").arg(Query.record().fieldName(column));
   out << "</tr></thead>\n";
@@ -269,8 +296,7 @@ void MainWindow::on_imprimer_clicked()
  }
 }
 
-//To use
-// you dont need that just makes my DB createConnection();
+
 
 
 void MainWindow::on_pushButton_5_clicked()
@@ -294,36 +320,24 @@ void MainWindow::on_recherche_role_clicked()
 }
 
 
-/*void MainWindow::on_pushButton_4_clicked()
-{
-    int id=ui->le_cin->text().toInt();
-    int montant=ui->le_montant->text().toInt();
-    QString nom=ui->le_nom->text();
-    QString prenom=ui->le_prenom->text();
- //QString  role=ui->le_role->text();
- QString produit=ui->le_produit->text();
- QString role =ui->combo->currentText();
 
-    Dons D( id, nom, prenom,role ,produit , montant);
-    QFile file("historique.txt");
-    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
-    {
-        //le code fonctionne
-        QTextStream ecriture(&file);
-        ecriture<<"ID:" +id;
-         ecriture<<"Nom:" +nom;
-          ecriture<<"prenom:" +prenom;
-           ecriture<<"role:" +role;
-            ecriture<<"produit:" +produit;
-            file.close();
-    }
-
-
-
-}*/
 
 void MainWindow::on_pushButton_4_clicked()
 {
-    QString link="C:/Users/user/Documents/projetQT/Historiques.txt";
-       QDesktopServices::openUrl(QUrl(link));
+    QFile file("C:/Users/user/Documents/projetQT/historiques.txt");
+        if(!file.open(QIODevice::ReadOnly)){
+            qCritical() << "file not found ";
+            qCritical() << file.errorString();
+
+        }
+        QTextStream in(&file);
+        ui->textBrowser->setText(in.readAll());
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    QString prenom=ui->recherche_prenom->text();
+
+    ui->tab_recherche->setModel(D.recherche_nom(prenom)) ;
+
 }

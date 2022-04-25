@@ -20,14 +20,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     connection.cpp \
     dons.cpp \
-    historique.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     connection.h \
     dons.h \
-    historique.h \
     mainwindow.h
 
 FORMS += \

@@ -3,13 +3,14 @@
 #include <QString>
 #include<QSqlQuery>
 #include<QSqlQueryModel>
+#include<QDate>
 
 class Dons
 {
 
 public:
     Dons();
-    Dons(int,QString,QString,QString,QString,int);
+    Dons(int,QString,QString,QString,QString,int,QDate);
 
     int getid();
     QString getnom();
@@ -17,6 +18,7 @@ public:
     QString getrole();
     QString getproduit();
     int getmontant();
+    QDate getdate();
 
 
      void setnom(QString );
@@ -25,6 +27,7 @@ public:
       void setproduit(QString );
       void setmontant(int);
       void setid(int);
+      void setdate(QDate);
 
 
 bool ajouter();
@@ -33,14 +36,15 @@ bool supprimer(int);
 
 bool modifier(int);
 QSqlQueryModel* recherche_nom(QString);
-QSqlQueryModel* recherche_role3();
-QSqlQueryModel* recherche_role2();
+
+QSqlQueryModel* recherche_prenom(QString);
 QSqlQueryModel* recherche_role(QString);
 
 private:
 int id;
 QString nom,prenom,role,produit;
 int montant;
+QDate dates;
 
 
 };

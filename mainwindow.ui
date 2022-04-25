@@ -17,8 +17,8 @@
    <widget class="QTabWidget" name="modifier">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>10</y>
+      <x>40</x>
+      <y>20</y>
       <width>1381</width>
       <height>701</height>
      </rect>
@@ -355,7 +355,7 @@ QLabel
 </string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="ajouter">
      <attribute name="title">
@@ -364,8 +364,8 @@ QLabel
      <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>10</y>
+        <x>50</x>
+        <y>20</y>
         <width>971</width>
         <height>621</height>
        </rect>
@@ -402,8 +402,8 @@ QLabel
       <widget class="QLabel" name="label_4">
        <property name="geometry">
         <rect>
-         <x>30</x>
-         <y>270</y>
+         <x>460</x>
+         <y>120</y>
          <width>56</width>
          <height>16</height>
         </rect>
@@ -415,8 +415,8 @@ QLabel
       <widget class="QLabel" name="label_5">
        <property name="geometry">
         <rect>
-         <x>5</x>
-         <y>360</y>
+         <x>450</x>
+         <y>200</y>
          <width>81</width>
          <height>20</height>
         </rect>
@@ -474,8 +474,8 @@ QLabel
       <widget class="QLineEdit" name="le_montant">
        <property name="geometry">
         <rect>
-         <x>110</x>
-         <y>360</y>
+         <x>570</x>
+         <y>200</y>
          <width>113</width>
          <height>22</height>
         </rect>
@@ -504,8 +504,8 @@ QLabel
       <widget class="QPushButton" name="pb_ajouter">
        <property name="geometry">
         <rect>
-         <x>570</x>
-         <y>140</y>
+         <x>320</x>
+         <y>390</y>
          <width>101</width>
          <height>41</height>
         </rect>
@@ -514,24 +514,11 @@ QLabel
         <string>Ajouter</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_4">
-       <property name="geometry">
-        <rect>
-         <x>570</x>
-         <y>210</y>
-         <width>101</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Historique</string>
-       </property>
-      </widget>
       <widget class="QComboBox" name="combo">
        <property name="geometry">
         <rect>
-         <x>110</x>
-         <y>270</y>
+         <x>560</x>
+         <y>120</y>
          <width>131</width>
          <height>21</height>
         </rect>
@@ -552,6 +539,29 @@ QLabel
         </property>
        </item>
       </widget>
+      <widget class="QLabel" name="label_18">
+       <property name="geometry">
+        <rect>
+         <x>460</x>
+         <y>280</y>
+         <width>56</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Date</string>
+       </property>
+      </widget>
+      <widget class="QDateEdit" name="date">
+       <property name="geometry">
+        <rect>
+         <x>570</x>
+         <y>280</y>
+         <width>110</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="afficher">
@@ -561,8 +571,8 @@ QLabel
      <widget class="QGroupBox" name="groupBox_2">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
+        <x>10</x>
+        <y>10</y>
         <width>1361</width>
         <height>671</height>
        </rect>
@@ -721,8 +731,8 @@ QLabel
       <widget class="QPushButton" name="pb_modifier">
        <property name="geometry">
         <rect>
-         <x>120</x>
-         <y>520</y>
+         <x>100</x>
+         <y>590</y>
          <width>91</width>
          <height>31</height>
         </rect>
@@ -875,6 +885,29 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
         </property>
        </item>
       </widget>
+      <widget class="QLabel" name="label_19">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>520</y>
+         <width>56</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Date</string>
+       </property>
+      </widget>
+      <widget class="QDateEdit" name="date_modif">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>520</y>
+         <width>110</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
       <zorder>groupBox_3</zorder>
       <zorder>label_9</zorder>
       <zorder>label_10</zorder>
@@ -892,6 +925,8 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
       <zorder>pb_modifier</zorder>
       <zorder>imprimer</zorder>
       <zorder>combo_modif</zorder>
+      <zorder>label_19</zorder>
+      <zorder>date_modif</zorder>
      </widget>
     </widget>
     <widget class="QWidget" name="tab">
@@ -960,8 +995,8 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLineEdit" name="recherche">
       <property name="geometry">
        <rect>
-        <x>340</x>
-        <y>240</y>
+        <x>350</x>
+        <y>260</y>
         <width>331</width>
         <height>31</height>
        </rect>
@@ -983,8 +1018,8 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>230</x>
-        <y>250</y>
+        <x>240</x>
+        <y>260</y>
         <width>56</width>
         <height>16</height>
        </rect>
@@ -1030,6 +1065,88 @@ font: 16pt &quot;MS Shell Dlg 2&quot;;</string>
         <string>Benevole</string>
        </property>
       </item>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>732</x>
+        <y>257</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Rechercher</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_16">
+      <property name="geometry">
+       <rect>
+        <x>880</x>
+        <y>260</y>
+        <width>56</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Prenom</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="recherche_prenom">
+      <property name="geometry">
+       <rect>
+        <x>950</x>
+        <y>251</y>
+        <width>231</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Historique">
+     <attribute name="title">
+      <string>Historique</string>
+     </attribute>
+     <widget class="QTextBrowser" name="textBrowser">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>170</y>
+        <width>1101</width>
+        <height>431</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_17">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>80</y>
+        <width>471</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>L'historique des dons :</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>610</y>
+        <width>101</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Historique</string>
+      </property>
      </widget>
     </widget>
    </widget>
