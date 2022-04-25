@@ -1,0 +1,24 @@
+id:1
+montant:1000
+ role:Enseignant
+prenom :ayed
+produit :pol
+nom :karim
+dateD :22/04/2022
+------------------------------------------------
+id:2
+montant:1200
+ role:Enseignant
+prenom :benhmida
+produit :sdqpol
+nom :chayma
+dateD :22/04/2022
+------------------------------------------------
+id:
+montant:
+ role:Medecin 
+prenom :
+produit :
+nom :
+dateD :01/01/2000
+------------------------------------------------

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>notification.jpg</file>
+    </qresource>
+</RCC>
