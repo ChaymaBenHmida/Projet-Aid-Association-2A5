@@ -1,0 +1,10 @@
+id_depenses:1
+date_depenses :14/12/2002
+type_depenses :Medicaments
+montant :1200
+------------------------------------------------
+id_depenses:2
+date_depenses :15/01/2003
+type_depenses :Evenements
+montant :12003
+------------------------------------------------
